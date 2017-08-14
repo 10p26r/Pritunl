@@ -1,4 +1,4 @@
-# Pritunl Debian 8
+# Create Pritunl for Debian 8
 #!/bin/bash
 
 # go to root
