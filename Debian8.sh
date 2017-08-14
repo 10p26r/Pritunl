@@ -36,11 +36,11 @@ ln -fs /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
 # About
 clear
 echo ""
-echo "Install Success.... (Script by Mnm Ami)"
-echo "Pritunl / Squid Proxy / Firewall"
-echo "Time Zone : Bangkok"
+echo "Pritunl, Squid Proxy, Firewall .... Install Success ...."
+echo "Source by Mnm Ami"
 echo ""
 echo "Copy URL and Pless on Browser : https://$MYIP"
-echo "Copy Code and Pless to Pritunl : " pritunl setup-key
+echo "Copy Code and Pless to Pritunl"
+pritunl setup-key
 echo ""
 echo ""
