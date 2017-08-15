@@ -37,6 +37,7 @@ ln -fs /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
 clear
 echo ""
 echo "Pritunl, Squid Proxy, Firewall .... Install Success ...."
+echo "Debian 8 Jessie"
 echo "Source by Mnm Ami"
 echo ""
 echo "Copy URL and Pless on Browser : https://$MYIP"
