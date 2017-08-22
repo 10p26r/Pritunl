@@ -1,22 +1,5 @@
 #!/bin/bash
 
-# go to root
-cd
-
-# Install Web Server
-apt-get -y install nginx php5-fpm php5-cli
-cd
-rm /etc/nginx/sites-enabled/default
-rm /etc/nginx/sites-available/default
-wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/zero9911/pritunl/master/conf/nginx.conf"
-mkdir -p /home/vps/public_html
-echo "<pre>Setup by MKSSHVPN </pre>" > /home/vps/public_html/index.html
-echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/zero9911/pritunl/master/conf/vps.conf"
-sed -i 's/listen = \/var\/run\/php5-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php5/fpm/pool.d/www.conf
-service php5-fpm restart
-service nginx restart
-
 # Install Vnstat
 apt-get -y install vnstat
 vnstat -u -i eth0
@@ -34,4 +17,7 @@ sed -i "s/\$iface_list = array('eth0', 'sixxs');/\$iface_list = array('eth0');/g
 sed -i "s/\$language = 'nl';/\$language = 'en';/g" config.php
 sed -i 's/Internal/Internet/g' config.php
 sed -i '/SixXS IPv6/d' config.php
-cd
+clear
+echo ""
+echo "VNSTAT Install Success"
+echo ""
