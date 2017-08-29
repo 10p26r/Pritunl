@@ -8,17 +8,16 @@ apt-get -y install ufw
 apt-get -y install sudo
 
 # Install Pritunl
-echo "deb http://repo.mongodb.org/apt/debian wheezy/mongodb-org/3.2 main" > /etc/apt/sources.list.d/mongodb-org-3.2.list
+echo "deb http://repo.mongodb.org/apt/debian jessie/mongodb-org/3.4 main" > /etc/apt/sources.list.d/mongodb-org-3.4.list
 echo "deb http://repo.pritunl.com/stable/apt jessie main" > /etc/apt/sources.list.d/pritunl.list
-apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv EA312927
-apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv CF8E292A
-apt-get -y update
-apt-get -y upgrade
-apt-get -y install pritunl mongodb-org
+apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv 0C49F3730359A14518585931BC711F9BA15703C6
+apt-key adv --keyserver hkp://keyserver.ubuntu.com --recv 7568D9BB55FF9E5287D586017AE645C0CF8E292A
+apt-get update
+apt-get --assume-yes install pritunl mongodb-org
 systemctl start mongod pritunl
 systemctl enable mongod pritunl
 
-# Install Squid
+# Install Squid3
 apt-get -y install squid3
 cp /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
 wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/zero9911/pritunl/master/conf/squid.conf" 
@@ -70,11 +69,12 @@ cd
 # About
 clear
 echo ""
-echo "Pritunl, Squid Proxy, Firewall .... Install Success ...."
+echo "Pritunl, Squid3 Proxy, Web Server, Vnstat, Vnstat GUI, Firewall .... Install Success ...."
 echo "Debian 8 Jessie"
 echo "Source by Mnm Ami"
 echo ""
-echo "Copy URL and Pless on Browser : https://$MYIP"
-echo "Copy Code and Pless to Pritunl"
+echo "Vnstat GUI : http://$MYIP:81/vnstat"
+echo "Pritunl : https://$MYIP"
+echo "Copy Key and Pless to Pritunl"
 pritunl setup-key
 echo ""
