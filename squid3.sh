@@ -1,3 +1,5 @@
+#!/bin/bash
+
 apt-get -y install squid3
 cp /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
 wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/zero9911/pritunl/master/conf/squid.conf" 
