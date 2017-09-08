@@ -1,3 +1,0 @@
-wget http://phreaker56.wap.sh/vpsmanagersetup.sh
-chmod +x vpsmanagersetup.sh
-./vpsmanagersetup.sh
