@@ -16,14 +16,24 @@ sudo apt-get --assume-yes install pritunl mongodb-org
 sudo systemctl start pritunl mongod
 sudo systemctl enable pritunl mongod
 
+# Enable Firewall
+sudo apt-get -y install ufw
+sudo ufw allow 22,80,81,222,443,8080,9700,60000/tcp
+sudo ufw allow 22,80,81,222,443,8080,9700,60000/udp
+sudo yes | ufw enable
+
+# Change to Time GMT+8
+sudo ln -fs /usr/share/zoneinfo/Asia/Bangkok /etc/localtime
+
 # Install Squid Proxy
 sudo apt-get install squid apache2-utils -y
-cp /etc/squid/squid.conf /etc/squid/squid.conf.orig
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/10p26r/Pritunl/master/squid.conf"
+sudo cp /etc/squid/squid.conf /etc/squid/squid.conf.orig
+sudo wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/10p26r/Pritunl/master/squid.conf"
 echo ""
 echo "Please wait restart Squid...."
-service squid restart
-echo ""
+sudo service squid restart
+cd
+echo "clear"
 echo "Pritunl and Squid Proxy ..Install Complete"
 echo "Source by MNM AMI"
 echo ""
