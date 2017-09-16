@@ -17,17 +17,22 @@ sudo systemctl start pritunl mongod
 sudo systemctl enable pritunl mongod
 
 # Install Squid Proxy
-sudo apt-get install squid apache2-utils -y
-sudo cp /etc/squid/squid.conf /etc/squid/squid.conf.orig
-sudo wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/10p26r/Pritunl/master/squid.conf"
+apt-get -y install squid3
+cp /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
+wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/10p26r/Pritunl/master/Squid3.conf"
+MYIP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | grep -v '192.168'`;
+sed -i s/xxxxxxxxx/$MYIP/g /etc/squid3/squid.conf;
+service squid3 restart
 echo ""
 echo "Please wait restart Squid...."
 sudo service squid restart
 cd
+
+# End
 echo "Pritunl and Squid Proxy ..Install Complete"
-echo "Source by MNM AMI"
+echo "Source by Mnm Ami"
 echo ""
-echo "Squid Proxy IP : $MYIP Port 3128"
+echo "Squid Proxy : $MYIP Port 80, 8000, 8080"
 echo "Pritunl : https://$MYIP"
 echo "Copy Key and Pless to Pritunl"
 pritunl setup-key
