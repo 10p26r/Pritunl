@@ -33,7 +33,6 @@ echo ""
 echo "Please wait restart Squid...."
 sudo service squid restart
 cd
-clear
 echo "Pritunl and Squid Proxy ..Install Complete"
 echo "Source by MNM AMI"
 echo ""
