@@ -17,4 +17,4 @@ sudo systemctl start pritunl mongod
 sudo systemctl enable pritunl mongod
 
 # Install Squid Proxy
-sudo apt-get install squid apache2-utils -y
+# sudo apt-get install squid apache2-utils -y
