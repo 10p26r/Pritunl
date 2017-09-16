@@ -17,4 +17,16 @@ sudo systemctl start pritunl mongod
 sudo systemctl enable pritunl mongod
 
 # Install Squid Proxy
-# sudo apt-get install squid apache2-utils -y
+sudo apt-get install squid apache2-utils -y
+cp /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
+wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/10p26r/Pritunl/master/squid.conf"
+echo ""
+echo "Please wait restart Squid...."
+service squid restart
+echo ""
+echo "Pritunl and Squid Proxy ..Install Complete"
+echo "Source by MNM AMI"
+echo ""
+echo "Copy Key and Pless to Pritunl"
+pritunl setup-key
+echo ""
