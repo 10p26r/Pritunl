@@ -1,4 +1,4 @@
-#!/bib/bash
+#!/bin/bash
 
 # Install Pritunl
 sudo tee -a /etc/apt/sources.list.d/mongodb-org-3.4.list << EOF
