@@ -27,6 +27,8 @@ echo ""
 echo "Pritunl and Squid Proxy ..Install Complete"
 echo "Source by MNM AMI"
 echo ""
+echo "Squid Proxy IP : $MYIP Port 3128"
+echo "Pritunl : https://$MYIP"
 echo "Copy Key and Pless to Pritunl"
 pritunl setup-key
 echo ""
