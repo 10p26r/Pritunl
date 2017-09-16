@@ -18,8 +18,8 @@ sudo systemctl enable pritunl mongod
 
 # Install Squid Proxy
 sudo apt-get install squid apache2-utils -y
-cp /etc/squid3/squid.conf /etc/squid3/squid.conf.orig
-wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/10p26r/Pritunl/master/squid.conf"
+cp /etc/squid/squid.conf /etc/squid/squid.conf.orig
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/10p26r/Pritunl/master/squid.conf"
 echo ""
 echo "Please wait restart Squid...."
 service squid restart
