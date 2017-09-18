@@ -11,7 +11,7 @@ fi
 
 # SQUID
 apt-get -y install squid
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/zero9911/a/master/script/squid.conf"
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/10p26r/Pritunl/master/Extra/squid.conf"
 sed -i "s/ipserver/$myip/g" /etc/squid/squid.conf
 cd
 
