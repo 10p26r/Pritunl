@@ -41,6 +41,7 @@ cd
 
 # restart service
 service ssh restart
+service dropbear restart
 service squid restart
 
 clear
