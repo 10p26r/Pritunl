@@ -54,26 +54,25 @@ echo "/usr/sbin/nologin" >> /etc/shells
 cd
 
 # SQUID3
-apt-get -y install squid3
-wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/zero9911/a/master/script/squid.conf"
-sed -i "s/ipserver/$myip/g" /etc/squid3/squid.conf
+apt-get -y install squid
+wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/zero9911/a/master/script/squid.conf"
+sed -i "s/ipserver/$myip/g" /etc/squid/squid.conf
 cd
 
 
 # OPENVPN
-wget https://raw.githubusercontent.com/10p26r/Pritunl/master/Extra/openvpn.sh && chmod +x openvpn.sh && ./openvpn.sh
+wget https://gist.githubusercontent.com/windows98SE/d87fac3540d6e8657013/raw/c80298b1ecb4ecb5250835a30281dfdafd17ff5e/openvpn-install.sh
+chmod +x openvpn-install.sh
+./openvpn-install.sh
 
 # restart service
 service ssh restart
 service openvpn restart
 service dropbear restart
-service squid3 restart
+service squid restart
 
 clear
 echo "
 
 Install Complete.......
 "
-cat /dev/null > ~/.bash_history && history -c
-exit
-fi
