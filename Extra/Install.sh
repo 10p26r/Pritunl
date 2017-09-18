@@ -85,7 +85,6 @@ service dropbear restart
 service openvpn restart
 service squid restart
 
-clear
 echo "
 
 Install Complete.......
