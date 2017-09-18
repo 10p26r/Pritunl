@@ -61,45 +61,19 @@ cd
 
 
 # OPENVPN
-
+wget https://raw.githubusercontent.com/10p26r/Pritunl/master/Extra/openvpn.sh && chmod +x openvpn.sh && ./openvpn.sh
 
 # restart service
 service ssh restart
 service openvpn restart
 service dropbear restart
-service nginx restart
-service php5-fpm restart
-service webmin restart
 service squid3 restart
-service fail2ban restart
 
 clear
-echo "===============================================--"
-echo "                             "
-echo "  === AUTOSCRIPT FROM MKSSHVPN === "
-echo "WEBMIN : http://$myip:10000 "
-echo "OPENVPN PORT : 59999"
-echo "DROPBEAR PORT : 22,443"
-echo "PROXY PORT : 7166,8080"
-echo "Config OPENVPN : http://$myip/max.ovpn"
-echo "SERVER TIME/LOCATION : KUALA LUMPUR +8"
-echo "TORRENT PORT HAS BLOCK BY SCRIPT"
-echo "CONTACT OWNER SCRIPT"
-echo "WHATSAPP : +60162771064"
-echo "TELEGRAM : @mk_let"
-echo "For SWAP RAM PLEASE CONTACT OWNER"
-echo "  === PLEASE REBOOT TAKE EFFECT  ===  "
-echo "                                  "
-echo "=================================================="
-clear
 echo "
-      MKSSHVPN AUTOSCRIPT SYSTEM
-	  CONTACT 0162771064
-	  PREMIUM SCRIPT FOR DEBIAN 8.x 
-	  [   T H A N K   Y O U  ]
+
+Install Complete.......
 "
 cat /dev/null > ~/.bash_history && history -c
-rm *.txt
-rm *.sh
 exit
 fi
