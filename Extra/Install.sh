@@ -95,7 +95,7 @@ service php5-fpm restart
 service ssh restart
 service dropbear restart
 service openvpn restart
-service squid restart
+service squid3 restart
 
 echo "
 
