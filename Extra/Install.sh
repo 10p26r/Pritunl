@@ -1,5 +1,8 @@
 #!/bin/bash
 
+myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
+myint=`ifconfig | grep -B1 "inet addr:$myip" | head -n1 | awk '{print $1}'`;
+
 if [ $USER != 'root' ]; then
 	echo "Sorry, for run the script please using root user"
 	exit
@@ -28,6 +31,12 @@ chmod +x  /usr/local/bin/menu
 chmod +x  /usr/local/bin/user-list
 chmod +x  /usr/local/bin/status
 chmod +x  /usr/local/bin/monssh
+cd
+
+apt-get -y install dropbear
+wget -O /etc/default/dropbear "https://raw.githubusercontent.com/10p26r/Pritunl/master/Extra/dropbear"
+echo "/bin/false" >> /etc/shells
+echo "/usr/sbin/nologin" >> /etc/shells
 cd
 
 # restart service
