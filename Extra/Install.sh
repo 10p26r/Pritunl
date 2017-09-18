@@ -19,12 +19,15 @@ cd
 wget https://raw.githubusercontent.com/10p26r/Pritunl/master/Extra/menu
 wget https://raw.githubusercontent.com/10p26r/Pritunl/master/Extra/user-list
 wget https://raw.githubusercontent.com/10p26r/Pritunl/master/Extra/status
+wget https://raw.githubusercontent.com/10p26r/Pritunl/master/Extra/monssh
 mv menu /usr/local/bin/
 mv user-list /usr/local/bin/
 mv status /usr/local/bin/
+mv monssh /usr/local/bin/
 chmod +x  /usr/local/bin/menu
 chmod +x  /usr/local/bin/user-list
 chmod +x  /usr/local/bin/status
+chmod +x  /usr/local/bin/monssh
 cd
 
 # restart service
