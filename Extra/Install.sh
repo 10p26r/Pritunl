@@ -58,6 +58,18 @@ echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 cd
 
+# Nginx
+apt-get -y install nginx php5-fpm php5-cli libexpat1-dev libxml-parser-perl
+rm /etc/nginx/sites-enabled/default
+rm /etc/nginx/sites-available/default
+wget -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/zero9911/a/master/script/nginx.conf"
+mkdir -p /home/vps/public_html
+echo "<pre>Setup by Dragon96 | telegram @ranger_9699 | whatsapp +60162327524</pre>" > /home/vps/public_html/index.php
+echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
+wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/zero9911/a/master/script/vps1.conf"
+sed -i 's/listen = \/var\/run\/php5-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php5/fpm/pool.d/www.conf
+cd
+
 # OpenVPN
 apt-get -y install openvpn
 cd /etc/openvpn/
@@ -80,6 +92,8 @@ rm $0;rm *.txt;rm *.tar;rm *.deb;rm *.asc;rm *.zip;rm ddos*;
 cd
 
 # restart service
+service nginx restart
+service php5-fpm restart
 service ssh restart
 service dropbear restart
 service openvpn restart
