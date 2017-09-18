@@ -56,7 +56,7 @@ function used_data(){
 clear
 echo""
 PS3='Please enter your choice: '
-options=("Add User" "Renew User" "Delete User" "Current Users Dropbear" "User List" "Ram Status" "Users Not Expired" "Expired Users" "Used Data By Users" "Users Status Openvpn" "Quit")
+options=("Add User" "Renew User" "Delete User" "User List" "Memory Status" "Users Not Expired" "Expired Users" "Used Data By Users" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -77,16 +77,12 @@ do
             read -p "Enter Username to be Removed : " uname
             delete_user
             break
-            ;;
-		"Current Users Dropbear")
-            monssh
-            break
-            ;;		
+            ;;	
 		"User List")
             user-list
             break
             ;;	
-		"Ram Status")
+		"Memory Status")
 		    free -m 
             break
             ;;	
@@ -100,10 +96,6 @@ do
 			;;
 		"Used Data By Users")
 			used_data
-			break
-			;;
-	        "Users Status Openvpn")
-			status
 			break
 			;;
         "Quit")
