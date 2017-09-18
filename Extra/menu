@@ -1,0 +1,115 @@
+#!/bin/bash
+
+function create_user() {
+	useradd -M $uname
+	echo "$uname:$pass" | chpasswd
+	usermod -e $expdate $uname
+}
+
+function renew_user() {
+	echo "New Expiration Date for $uname: $expdate...";
+	usermod -e $expdate $uname
+}
+
+function delete_user(){
+	userdel $uname
+}
+
+function expired_users(){
+	cat /etc/shadow | cut -d: -f1,8 | sed /:$/d > /tmp/expirelist.txt
+	totalaccounts=`cat /tmp/expirelist.txt | wc -l`
+	for((i=1; i<=$totalaccounts; i++ )); do
+		tuserval=`head -n $i /tmp/expirelist.txt | tail -n 1`
+		username=`echo $tuserval | cut -f1 -d:`
+		userexp=`echo $tuserval | cut -f2 -d:`
+		userexpireinseconds=$(( $userexp * 86400 ))
+		todaystime=`date +%s`
+		if [ $userexpireinseconds -lt $todaystime ] ; then
+			echo $username
+		fi
+	done
+	rm /tmp/expirelist.txt
+}
+
+function not_expired_users(){
+    cat /etc/shadow | cut -d: -f1,8 | sed /:$/d > /tmp/expirelist.txt
+    totalaccounts=`cat /tmp/expirelist.txt | wc -l`
+    for((i=1; i<=$totalaccounts; i++ )); do
+        tuserval=`head -n $i /tmp/expirelist.txt | tail -n 1`
+        username=`echo $tuserval | cut -f1 -d:`
+        userexp=`echo $tuserval | cut -f2 -d:`
+        userexpireinseconds=$(( $userexp * 86400 ))
+        todaystime=`date +%s`
+        if [ $userexpireinseconds -gt $todaystime ] ; then
+            echo $username
+        fi
+    done
+	rm /tmp/expirelist.txt
+}
+
+function used_data(){
+	myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`
+	myint=`ifconfig | grep -B1 "inet addr:$myip" | head -n1 | awk '{print $1}'`
+	ifconfig $myint | grep "RX bytes" | sed -e 's/ *RX [a-z:0-9]*/Received: /g' | sed -e 's/TX [a-z:0-9]*/\nTransfered: /g'
+}
+
+clear
+echo""
+
+PS3='กรุณาเลือกหัวข้อที่ต้องการ...: '
+options=("เพิ่มยูสเซอร์" "ต่ออายุยูสเซอร์" "ลบยูสเซอร์" "ผู้ใช้ Dropbear ในปัจจุบัน" "รายชื่อยูสเซอร์" "สถานะหน่วยความจำ" "ยูสเซอร์ที่ยังไม่หมดอายุ" "ยูสเซอร์ที่หมดอายุแล้ว" "ข้อมูลของยูสเซอร์" "สถานะยูเซอร์ OpenVPN" "ยกเลิก")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "เพิ่มยูสเซอร์")
+            read -p "ชื่อยูสเซอร์ : " uname
+            read -p "รหัสผ่านยูสเซอร์ : " pass
+            read -p "กำหนดวันหมดอายุ (ค.ศ.-เดือน-วันที่): " expdate
+	    create_user
+	    break
+            ;;
+        "ต่ออายุยูสเซอร์")
+            read -p "ชื่อยูสเซอร์ที่จะต่ออายุ : " uname
+            read -p "กำหนดวันหมดอายุ (ค.ศ.-เดือน-วันที่ ): " expdate
+            renew_user
+            break
+            ;;
+        "ลบยูสเซอร์")
+            read -p "ชื่อยูสเซอร์ที่ต้องการลบ : " uname
+            delete_user
+            break
+            ;;
+		"ผู้ใช้ Dropbear ในปัจจุบัน")
+            monssh
+            break
+            ;;		
+		"รายชื่อยูสเซอร์")
+            user-list
+            break
+            ;;	
+		"สถานะหน่วยความจำ")
+		    free -m 
+            break
+            ;;	
+		"ยูสเซอร์ที่ยังไม่หมดอายุ")
+			not_expired_users
+			break
+			;;
+		"ยูสเซอร์ที่หมดอายุแล้ว")
+			expired_users
+			break
+			;;
+		"ข้อมูลของยูสเซอร์")
+			used_data
+			break
+			;;
+	        "สถานะยูเซอร์ OpenVPN")
+			status
+			break
+			;;
+        "ยกเลิก")
+            break
+            ;;
+        *) echo invalid option;;
+    esac
+เสร็จสิ้น
