@@ -56,7 +56,7 @@ function used_data(){
 clear
 echo""
 PS3='Please enter your choice: '
-options=("Add User" "Renew User" "Delete User" "User List" "Memory Status" "Users Not Expired" "Expired Users" "Used Data By Users" "Quit")
+options=("Add User" "Renew User" "Delete User" "User List" "Current Users Dropbear" "Users Not Expired" "Expired Users" "Used Data By Users" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -82,10 +82,10 @@ do
             user-list
             break
             ;;	
-		"Memory Status")
-		    free -m 
+		"Current Users Dropbear")
+            monssh
             break
-            ;;	
+            ;;		
 		"Users Not Expired")
 			not_expired_users
 			break
