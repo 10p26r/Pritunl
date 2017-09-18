@@ -55,61 +55,60 @@ function used_data(){
 
 clear
 echo""
-
-PS3='กรุณาเลือกหัวข้อที่ต้องการ...: '
-options=("เพิ่มยูสเซอร์" "ต่ออายุยูสเซอร์" "ลบยูสเซอร์" "ผู้ใช้ Dropbear ในปัจจุบัน" "รายชื่อยูสเซอร์" "สถานะหน่วยความจำ" "ยูสเซอร์ที่ยังไม่หมดอายุ" "ยูสเซอร์ที่หมดอายุแล้ว" "ข้อมูลของยูสเซอร์" "สถานะยูเซอร์ OpenVPN" "ยกเลิก")
+PS3='Please enter your choice: '
+options=("Add User" "Renew User" "Delete User" "Current Users Dropbear" "User List" "Ram Status" "Users Not Expired" "Expired Users" "Used Data By Users" "Users Status Openvpn" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
-        "เพิ่มยูสเซอร์")
-            read -p "ชื่อยูสเซอร์ : " uname
-            read -p "รหัสผ่านยูสเซอร์ : " pass
-            read -p "กำหนดวันหมดอายุ (ค.ศ.-เดือน-วันที่): " expdate
+        "Add User")
+            read -p "Enter Username : " uname
+            read -p "Enter Password : " pass
+            read -p "Enter Expiry Date (YYYY-MM-DD) : " expdate
 	    create_user
 	    break
             ;;
-        "ต่ออายุยูสเซอร์")
-            read -p "ชื่อยูสเซอร์ที่จะต่ออายุ : " uname
-            read -p "กำหนดวันหมดอายุ (ค.ศ.-เดือน-วันที่ ): " expdate
+        "Renew User")
+            read -p "Enter Username to Renew : " uname
+            read -p "Enter Expiry Date (YYYY-MM-DD) : " expdate
             renew_user
             break
             ;;
-        "ลบยูสเซอร์")
-            read -p "ชื่อยูสเซอร์ที่ต้องการลบ : " uname
+        "Delete User")
+            read -p "Enter Username to be Removed : " uname
             delete_user
             break
             ;;
-		"ผู้ใช้ Dropbear ในปัจจุบัน")
+		"Current Users Dropbear")
             monssh
             break
             ;;		
-		"รายชื่อยูสเซอร์")
+		"User List")
             user-list
             break
             ;;	
-		"สถานะหน่วยความจำ")
+		"Ram Status")
 		    free -m 
             break
             ;;	
-		"ยูสเซอร์ที่ยังไม่หมดอายุ")
+		"Users Not Expired")
 			not_expired_users
 			break
 			;;
-		"ยูสเซอร์ที่หมดอายุแล้ว")
+		"Expired Users")
 			expired_users
 			break
 			;;
-		"ข้อมูลของยูสเซอร์")
+		"Used Data By Users")
 			used_data
 			break
 			;;
-	        "สถานะยูเซอร์ OpenVPN")
+	        "Users Status Openvpn")
 			status
 			break
 			;;
-        "ยกเลิก")
+        "Quit")
             break
             ;;
         *) echo invalid option;;
     esac
-เสร็จสิ้น
+done
