@@ -33,7 +33,7 @@ cd
 # SQUID
 apt-get -y install squid
 wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/10p26r/Pritunl/master/Extra/squid.conf"
-sed -i "s/ipserver/$myip/g" /etc/squid3/squid.conf
+sed -i "s/ipserver/$myip/g" /etc/squid/squid.conf
 cd
 
 # MENU
