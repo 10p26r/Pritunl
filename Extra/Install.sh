@@ -27,7 +27,7 @@ apt-get -y --purge remove bind*;
 clear
 
 # MENU
-wget https://raw.githubusercontent.com/zero9911/a/master/script/menu
+wget https://raw.githubusercontent.com/10p26r/Pritunl/master/Extra/menu
 wget https://raw.githubusercontent.com/zero9911/a/master/script/user-list
 wget https://raw.githubusercontent.com/zero9911/a/master/script/monssh
 wget https://raw.githubusercontent.com/zero9911/a/master/script/status
